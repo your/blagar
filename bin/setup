@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+set -e
+
+bundle install
+
+# Install crystal-server
+
+echo ""
+echo "Installing crystal-server.. "
+
+set +e
+
+GEM_INSTALL_PATH="$(dirname `gem which blagar`)/.."
+TARGET_SERVER_DIR="${GEM_INSTALL_PATH}/lib/blagar/server/crystal"
+TARGET_SERVER_FILE="${TARGET_SERVER_DIR}/server.cr"
+BASE_REPO_URL="https://raw.githubusercontent.com/your/crystal-server/master"
+
+mkdir $TARGET_SERVER_DIR 2> /dev/null
+
+curl -s "${BASE_REPO_URL}/store.cr" > $TARGET_SERVER_FILE
+echo -ne "\r\n\r\n" >> $TARGET_SERVER_FILE
+curl -s "${BASE_REPO_URL}/server.cr" | sed '/require \".\/store\"/d' >> $TARGET_SERVER_FILE
+
+if [ $? -ne 0 ]; then
+  echo "ERROR! (running with sudo?! Please use bundler, in case.)" >&2
+else
+  echo "done. :D"
+fi
+
+echo ""
+
+CURRENT_DIR=$(pwd)
+
+if [ ! -f "${CURRENT_DIR}/shared.tpl" ]; then
+  (set -x; cp "${GEM_INSTALL_PATH}/boilerplate/shared.tpl" "${CURRENT_DIR}/shared.tpl")
+fi
+
+if [ ! -f "${CURRENT_DIR}/source" ]; then
+  mkdir "${CURRENT_DIR}/source"
+  mkdir "${CURRENT_DIR}/source/md"
+  (set -x; cp "${GEM_INSTALL_PATH}/boilerplate/source/md/test.md" "${CURRENT_DIR}/source/md/test.md")
+fi
+
+if [ ! -f "${CURRENT_DIR}/compiled" ]; then
+  mkdir "${CURRENT_DIR}/compiled"
+  mkdir "${CURRENT_DIR}/compiled/raw"
+  mkdir "${CURRENT_DIR}/compiled/raw/js"
+  mkdir "${CURRENT_DIR}/compiled/raw/css"
+  mkdir "${CURRENT_DIR}/compiled/raw/html"
+  (set -x; cp "${GEM_INSTALL_PATH}/boilerplate/compiled/raw/html/test.html" "${CURRENT_DIR}/compiled/raw/html/test.html")
+fi
+
+echo ""

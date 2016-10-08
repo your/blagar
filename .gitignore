@@ -1,0 +1,20 @@
+/.bundle/
+/.yardoc
+/Gemfile.lock
+/_yardoc/
+/coverage/
+/doc/
+/pkg/
+/spec/reports/
+/tmp/
+
+# tests
+/*.gem
+/*.sh
+/blagar-*
+/blagar/server/crystal/*
+
+# resources
+/shared.tpl
+/compiled/
+/source/
