@@ -17,9 +17,12 @@ BASE_REPO_URL="https://raw.githubusercontent.com/your/crystal-server/master"
 
 mkdir $TARGET_SERVER_DIR 2> /dev/null
 
-curl -s "${BASE_REPO_URL}/store.cr" > $TARGET_SERVER_FILE
+curl -s "${BASE_REPO_URL}/src/crystal-server/store.cr" > $TARGET_SERVER_FILE
 echo -ne "\r\n\r\n" >> $TARGET_SERVER_FILE
-curl -s "${BASE_REPO_URL}/server.cr" | sed '/require \".\/store\"/d' >> $TARGET_SERVER_FILE
+curl -s "${BASE_REPO_URL}/src/crystal-server/server.cr" | sed '/require \".\/store\"/d' >> $TARGET_SERVER_FILE
+echo -ne "\r\n\r\n" >> $TARGET_SERVER_FILE
+curl -s "${BASE_REPO_URL}/src/crystal-server.cr" | sed '/require \".\/crystal-server\/server\"/d' >> $TARGET_SERVER_FILE
+echo -ne "\r\n\r\n" >> $TARGET_SERVER_FILE
 
 if [ $? -ne 0 ]; then
   echo "ERROR! (running with sudo?! Please use bundler, in case.)" >&2
