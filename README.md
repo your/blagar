@@ -9,24 +9,15 @@ Note: [your/crystal-server](https://github.com/your/crystal-server) is used by t
 Install [Crystal](https://github.com/crystal-lang/crystal) first, then:
 
 ```
-  # clone repo
   git clone https://github.com/your/blagar.git
-  gem build blagar.gemspec
-
-  # create project folder and copy gem
-  mkdir ../tinyblog && cd "$_"
-  cp ../blagar/blagar-0.1.0.beta.1.gem blagar-0.1.0.beta.1.gem
-  gem unpack blagar-0.1.0.beta.1.gem
-
-  # setup gem
-  bundle exec ./bin/setup
+  bundle exec bin/setup
 ```
 
 ## Usage
 
-* Edit your `shared.tpl` file in `tinyblog/` (it's a shared HTML partial template)
-* Place your markdown files under `tinyblog/source/md/`
-* `bundle exec blagar`
+* Edit your `shared.tpl` file (it's a shared HTML partial template)
+* Place your markdown files under `source/md/`
+* `bundle exec blagar` in the root
 * Go to [http://localhost:8081/test](http://localhost:8081/test)
 
 ## WIP

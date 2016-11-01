@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-set -e
+
+set -e 
 
 bundle install
 
@@ -7,8 +8,6 @@ bundle install
 
 echo ""
 echo "Installing crystal-server.. "
-
-set +e
 
 GEM_INSTALL_PATH="$(dirname `gem which blagar`)/.."
 TARGET_SERVER_DIR="${GEM_INSTALL_PATH}/lib/blagar/server/crystal"
