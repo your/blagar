@@ -33,8 +33,8 @@ echo ""
 
 CURRENT_DIR=$(pwd)
 
-if [ ! -f "${CURRENT_DIR}/comipled/shared.html" ]; then
-  (set -x; cp "${GEM_INSTALL_PATH}/boilerplate/shared.html" "${CURRENT_DIR}/shared.tpl")
+if [ ! -f "${CURRENT_DIR}/compiled/shared.html" ]; then
+  (set -x; cp "${GEM_INSTALL_PATH}/boilerplate/shared.html" "${CURRENT_DIR}/compiled/shared.tpl")
 fi
 
 if [ ! -f "${CURRENT_DIR}/source" ]; then
