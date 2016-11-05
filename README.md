@@ -15,7 +15,7 @@ Install [Crystal](https://github.com/crystal-lang/crystal) first, then:
 
 ## Usage
 
-* Edit your `shared.tpl` file (it's a shared HTML partial template)
+* Edit your `shared.html` file (it's a shared HTML partial template)
 * Place your markdown files under `source/md/`
 * `bundle exec blagar` in the root
 * Go to [http://localhost:8081/test](http://localhost:8081/test)
